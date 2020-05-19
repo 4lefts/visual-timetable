@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { CSSTransition } from "react-transition-group";
 import styled from "styled-components";
+import BaseButton from "./BaseButton";
 
 const StyledMenu = styled.div`
   list-style: none;
@@ -29,30 +30,27 @@ const StyledMenu = styled.div`
   }
 `;
 
-const StyledButton = styled.button`
+const StyledMenuButton = styled(BaseButton)`
   background-color: dodgerblue;
   color: white;
-  font-family: inherit;
   font-size: 0.9em;
-  margin: 0;
   padding: 5px;
-  border: none;
-  border-radius: 3px;
-  transition: filter 330ms;
-  cursor: pointer;
-  &:hover {
-    filter: brightness(1.2);
-  }
 `;
 
-const StyledClearButton = styled(StyledButton)`
+const StyledClearButton = styled(StyledMenuButton)`
   background-color: tomato;
+  color: white;
+  font-size: 0.9em;
+  padding: 5px;
 `;
 
-const StyledOpenButton = styled(StyledButton)`
+const StyledOpenButton = styled(BaseButton)`
   position: fixed;
   right: 30px;
   bottom: 30px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
 `;
 
 const Menu = ({ addCard, clearAll }) => {
@@ -93,15 +91,18 @@ const Menu = ({ addCard, clearAll }) => {
       >
         <StyledMenu>
           {subjects.map((subject) => (
-            <StyledButton key={subject} onClick={() => handleClick(subject)}>
+            <StyledMenuButton
+              key={subject}
+              onClick={() => handleClick(subject)}
+            >
               {subject}
-            </StyledButton>
+            </StyledMenuButton>
           ))}
           <StyledClearButton onClick={clearAll}>Clear all</StyledClearButton>
         </StyledMenu>
       </CSSTransition>
       <StyledOpenButton onClick={() => setMenuIsOpen(!menuIsOpen)}>
-        {menuIsOpen ? "Close Menu" : "Open Menu"}
+        {menuIsOpen ? "Close" : "Open"}
       </StyledOpenButton>
     </div>
   );

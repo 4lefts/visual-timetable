@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import BaseButton from "./BaseButton";
 
 const StyledCard = styled.li`
   position: relative;
@@ -14,24 +15,13 @@ const StyledCard = styled.li`
   border-radius: 3px;
 `;
 
-const RemoveButton = styled.button`
+const RemoveButton = styled(BaseButton)`
   position: absolute;
   top: 10px;
   right: 10px;
   width: 24px;
   height: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: gainsboro;
-  border: none;
-  outline: none;
   border-radius: 50%;
-  transition: filter 330ms;
-  cursor: pointer;
-  &:hover {
-    filter: brightness(1.1);
-  }
 `;
 
 const Card = ({ id, subject, removeCard }) => {
