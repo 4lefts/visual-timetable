@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { CSSTransition } from "react-transition-group";
 import BaseButton from "./BaseButton";
 
 const StyledCard = styled.li`
@@ -13,6 +14,21 @@ const StyledCard = styled.li`
   justify-content: center;
   align-items: center;
   border-radius: 3px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  &.card-enter {
+    opacity: 0;
+  }
+  &.card-enter-active {
+    opacity: 1;
+    transition: opacity 500ms ease;
+  }
+  &.card-exit {
+    opacity: 1;
+  }
+  &.card-exit-active {
+    opacity: 0;
+    transition: opacity 500ms ease;
+  }
 `;
 
 const RemoveButton = styled(BaseButton)`

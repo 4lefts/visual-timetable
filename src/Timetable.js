@@ -1,28 +1,42 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import { ReactSortable } from "react-sortablejs";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 import styled from "styled-components";
 import Card from "./Card";
 
 const StyledTimetable = styled.ol`
   list-style: none;
-  margin: 20px;
+  min-height: 100vh;
+  margin: 0;
   padding: 0;
   display: grid;
+  align-content: center;
+  justify-content: center;
   grid-gap: 20px;
   grid-template-columns: repeat(auto-fit, 175px);
 `;
 
-const Timetable = ({ cards, setCards, removeCard }) => (
-  <ReactSortable tag={StyledTimetable} list={cards} setList={setCards}>
-    {cards.map((card) => (
-      <Card
-        key={card.id}
-        id={card.id}
-        subject={card.subject}
-        removeCard={removeCard}
-      ></Card>
-    ))}
-  </ReactSortable>
-);
+const Timetable = ({ cards, setCards, removeCard }) => {
+  return (
+    <ReactSortable
+      tag={StyledTimetable}
+      list={cards}
+      setList={setCards}
+      animation={200}
+    >
+      <TransitionGroup component={null}>
+        {cards.map((card) => (
+          <CSSTransition key={card.id} timeout={500} classNames="card">
+            <Card
+              id={card.id}
+              subject={card.subject}
+              removeCard={removeCard}
+            ></Card>
+          </CSSTransition>
+        ))}
+      </TransitionGroup>
+    </ReactSortable>
+  );
+};
 
 export default Timetable;

@@ -24,6 +24,30 @@ const testCards = [
     id: 4,
     subject: "history",
   },
+  {
+    id: 5,
+    subject: "art",
+  },
+  {
+    id: 6,
+    subject: "assembly",
+  },
+  {
+    id: 7,
+    subject: "DT",
+  },
+  {
+    id: 8,
+    subject: "geography",
+  },
+  {
+    id: 9,
+    subject: "history",
+  },
+  {
+    id: 10,
+    subject: "art",
+  },
 ];
 
 const App = () => {
@@ -55,11 +79,13 @@ const App = () => {
   return (
     <>
       <Menu addCard={addCard} clearAll={clearAll}></Menu>
-      <Timetable
-        cards={cards}
-        setCards={setCards}
-        removeCard={removeCard}
-      ></Timetable>
+      {cards.length && (
+        <Timetable
+          cards={cards}
+          setCards={setCards}
+          removeCard={removeCard}
+        ></Timetable>
+      )}
     </>
   );
 };

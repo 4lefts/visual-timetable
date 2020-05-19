@@ -16,3 +16,8 @@ body {
   color: rgba(0, 0, 0, 0.875);
   background-color: papayawhip;
 }
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
