@@ -12,7 +12,6 @@ const StyledCard = styled.li`
   justify-content: center;
   align-items: center;
   border-radius: 3px;
-  border: 3px solid skyblue;
 `;
 
 const RemoveButton = styled.button`
@@ -28,11 +27,10 @@ const RemoveButton = styled.button`
   border: none;
   outline: none;
   border-radius: 50%;
-  transition: all 0.3s ease;
+  transition: filter 330ms;
+  cursor: pointer;
   &:hover {
-    cursor: pointer;
-    background-color: tomato;
-    color: white;
+    filter: brightness(1.1);
   }
 `;
 
