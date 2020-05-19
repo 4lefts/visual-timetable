@@ -1,33 +1,37 @@
 import React, { useState } from "react";
-import { ReactSortable } from "react-sortablejs";
+// import styled from "styled-components";
+import Menu from "./Menu";
+import Timetable from "./Timetable";
+
+const testCards = [
+  {
+    id: 0,
+    subject: "art",
+  },
+  {
+    id: 1,
+    subject: "assembly",
+  },
+  {
+    id: 2,
+    subject: "DT",
+  },
+  {
+    id: 3,
+    subject: "geography",
+  },
+  {
+    id: 4,
+    subject: "history",
+  },
+];
 
 const App = () => {
-  const [cards, setCards] = useState([
-    {
-      id: 0,
-      subject: "art",
-    },
-    {
-      id: 1,
-      subject: "assembly",
-    },
-    {
-      id: 2,
-      subject: "DT",
-    },
-    {
-      id: 3,
-      subject: "geography",
-    },
-    {
-      id: 4,
-      subject: "history",
-    },
-  ]);
+  const [cards, setCards] = useState(testCards);
 
   const addCard = (newCard) => {
     // use the date in ms for card ids
-    // we don't care about randomness
+    // we don't care about randomness, etc
     // only that the id increments
     // data is only on the client side - there is no db
     const newId = new Date().getTime();
@@ -44,69 +48,19 @@ const App = () => {
     setCards(cards.filter((card) => card.id !== id));
   };
 
+  const clearAll = () => {
+    setCards([]);
+  };
+
   return (
     <>
-      <Menu addCard={addCard}></Menu>
-      <ReactSortable tag="ol" list={cards} setList={setCards}>
-        {cards.map((card) => (
-          <Card
-            key={card.id}
-            id={card.id}
-            subject={card.subject}
-            removeCard={removeCard}
-          ></Card>
-        ))}
-      </ReactSortable>
+      <Menu addCard={addCard} clearAll={clearAll}></Menu>
+      <Timetable
+        cards={cards}
+        setCards={setCards}
+        removeCard={removeCard}
+      ></Timetable>
     </>
-  );
-};
-
-const Card = ({ id, subject, removeCard }) => {
-  const handleClick = () => {
-    removeCard(id);
-  };
-  return (
-    <li>
-      <div>{subject}</div>
-      <button onClick={handleClick}>&times;</button>
-    </li>
-  );
-};
-
-const Menu = ({ addCard }) => {
-  const subjects = [
-    "art",
-    "assembly",
-    "DT",
-    "English",
-    "geography",
-    "history",
-    "home time",
-    "languages",
-    "lunch",
-    "maths",
-    "music",
-    "PE",
-    "play time",
-    "PSHE",
-    "RE",
-    "register",
-    "reading",
-    "science",
-    "story time",
-    "test",
-  ];
-
-  const handleClick = (subject) => addCard(subject);
-
-  return (
-    <ul>
-      {subjects.map((subject) => (
-        <li key={subject}>
-          <button onClick={() => handleClick(subject)}>{subject}</button>
-        </li>
-      ))}
-    </ul>
   );
 };
 

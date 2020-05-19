@@ -8,6 +8,7 @@ Next:
 - styling - do we want/need styled components?
 - animation - slide in/out of menu, animate reorder of cards, add and remove
 - localstorage
+- add today's date header
 
 ---
 
