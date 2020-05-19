@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { ReactSortable } from "react-sortablejs";
 
 const App = () => {
   const [cards, setCards] = useState([
@@ -25,7 +26,11 @@ const App = () => {
   ]);
 
   const addCard = (newCard) => {
-    const newId = cards.length;
+    // use the date in ms for card ids
+    // we don't care about randomness
+    // only that the id increments
+    // data is only on the client side - there is no db
+    const newId = new Date().getTime();
     setCards([
       ...cards,
       {
@@ -36,33 +41,25 @@ const App = () => {
   };
 
   const removeCard = (id) => {
-    console.log(id);
-    // remove the card with this id from the cards array
-
-    // reset all ids? is this necessary?
-    // should we actually use something better to set a unique id?
+    setCards(cards.filter((card) => card.id !== id));
   };
 
   return (
     <>
       <Menu addCard={addCard}></Menu>
-      <Timetable cards={cards} removeCard={removeCard}></Timetable>;
+      <ReactSortable tag="ol" list={cards} setList={setCards}>
+        {cards.map((card) => (
+          <Card
+            key={card.id}
+            id={card.id}
+            subject={card.subject}
+            removeCard={removeCard}
+          ></Card>
+        ))}
+      </ReactSortable>
     </>
   );
 };
-
-const Timetable = ({ cards, removeCard }) => (
-  <ol>
-    {cards.map((card) => (
-      <Card
-        key={card.id}
-        id={card.id}
-        subject={card.subject}
-        removeCard={removeCard}
-      ></Card>
-    ))}
-  </ol>
-);
 
 const Card = ({ id, subject, removeCard }) => {
   const handleClick = () => {
