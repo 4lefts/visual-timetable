@@ -92,7 +92,7 @@ const StyledOpenButton = styled(BaseButton)`
 `;
 
 const Menu = ({ addCard, clearAll }) => {
-  const [menuIsOpen, setMenuIsOpen] = useState(true);
+  const [menuIsOpen, setMenuIsOpen] = useState(false);
   const [menuHeight, setMenuHeight] = useState(100);
   useEffect(() => {
     // set negative margin on menu container to menu container height - button height
