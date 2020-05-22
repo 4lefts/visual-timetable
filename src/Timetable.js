@@ -2,7 +2,6 @@ import React from "react";
 import { ReactSortable } from "react-sortablejs";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import styled from "styled-components";
-import DateHeading from "./DateHeading";
 import Card from "./Card";
 
 const StyledTimetable = styled.ol`

@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import BaseButton from "./BaseButton";
+import { ReactComponent as CloseIcon } from "./icons/close-24px.svg";
 
 const StyledCard = styled.li`
   position: relative;
@@ -38,11 +39,31 @@ const StyledCard = styled.li`
 
 const RemoveButton = styled(BaseButton)`
   position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 24px;
-  height: 24px;
+  top: 5px;
+  right: 5px;
   border-radius: 50%;
+  padding: 0;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  svg {
+    width: 20px;
+    height: 20px;
+    .close-icon {
+      fill: grey;
+      transition: fill 0.3s ease;
+    }
+  }
+  &:hover {
+    filter: brightness(1);
+    .close-icon {
+      fill: tomato;
+    }
+  }
+  &:active .close-icon {
+    fill: tomato;
+  }
 `;
 
 const Card = ({ id, subject, removeCard }) => {
@@ -53,7 +74,9 @@ const Card = ({ id, subject, removeCard }) => {
     <StyledCard>
       <img src={require(`./images/${subject}.svg`)} />
       <div>{subject}</div>
-      <RemoveButton onClick={handleClick}>&times;</RemoveButton>
+      <RemoveButton onClick={handleClick}>
+        <CloseIcon></CloseIcon>
+      </RemoveButton>
     </StyledCard>
   );
 };
