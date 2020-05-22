@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { CSSTransition, SwitchTransition } from "react-transition-group";
+import { CSSTransition } from "react-transition-group";
 import styled from "styled-components";
 import BaseButton from "./BaseButton";
+import { ReactComponent as EditIcon } from "./icons/create-24px.svg";
+import { ReactComponent as UpIcon } from "./icons/arrow_upward-24px.svg";
 
 const StyledMenuWrapper = styled.div`
   position: absolute;
@@ -25,6 +27,7 @@ const StyledMenu = styled.div`
   grid-gap: 10px;
   background-color: white;
   border-bottom: 2px solid dodgerblue;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 `;
 
 const StyledMenuButton = styled(BaseButton)`
@@ -50,10 +53,46 @@ const StyledOpenButton = styled(BaseButton)`
   border: 2px solid;
   border-color: white dodgerblue dodgerblue dodgerblue;
   transform: translateY(-2px);
+  overflow: hidden;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.12), 0 1px 1px rgba(0, 0, 0, 0.24);
+  svg .icon {
+    fill: dodgerblue;
+  }
+  .menu-closed-enter {
+    position: absolute;
+    transform: translateX(-110%);
+  }
+  .menu-closed-enter-active {
+    transform: translateX(0%);
+    transition: all 0.5s ease;
+  }
+  .menu-closed-exit {
+    position: absolute;
+  }
+  .menu-closed-exit-active {
+    transform: translateX(-110%);
+    transition: all 0.5s ease;
+  }
+
+  .menu-open-enter {
+    position: absolute;
+    transform: translateX(110%);
+  }
+  .menu-open-enter-active {
+    transform: translateX(0%);
+    transition: all 0.5s ease;
+  }
+  .menu-open-exit {
+    position: absolute;
+  }
+  .menu-open-exit-active {
+    transform: translateX(110%);
+    transition: all 0.5s ease;
+  }
 `;
 
 const Menu = ({ addCard, clearAll }) => {
-  const [menuIsOpen, setMenuIsOpen] = useState(false);
+  const [menuIsOpen, setMenuIsOpen] = useState(true);
   const [menuHeight, setMenuHeight] = useState(100);
   useEffect(() => {
     // set negative margin on menu container to menu container height - button height
@@ -113,7 +152,22 @@ const Menu = ({ addCard, clearAll }) => {
         <StyledClearButton onClick={clearAll}>Clear all</StyledClearButton>
       </StyledMenu>
       <StyledOpenButton onClick={() => setMenuIsOpen(!menuIsOpen)}>
-        {menuIsOpen ? "Close" : "Open"}
+        <CSSTransition
+          in={!menuIsOpen}
+          unmountOnExit
+          timeout={500}
+          classNames="menu-closed"
+        >
+          <EditIcon></EditIcon>
+        </CSSTransition>
+        <CSSTransition
+          in={menuIsOpen}
+          unmountOnExit
+          timeout={500}
+          classNames="menu-open"
+        >
+          <UpIcon></UpIcon>
+        </CSSTransition>
       </StyledOpenButton>
     </StyledMenuWrapper>
   );

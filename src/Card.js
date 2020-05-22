@@ -50,18 +50,18 @@ const RemoveButton = styled(BaseButton)`
   svg {
     width: 20px;
     height: 20px;
-    .close-icon {
+    .icon {
       fill: grey;
       transition: fill 0.3s ease;
     }
   }
   &:hover {
     filter: brightness(1);
-    .close-icon {
+    .icon {
       fill: tomato;
     }
   }
-  &:active .close-icon {
+  &:active .icon {
     fill: tomato;
   }
 `;
