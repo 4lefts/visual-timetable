@@ -8,12 +8,18 @@ const StyledCard = styled.li`
   height: 175px;
   padding: 10px;
   background: white;
-  font-size: 2em;
+  font-size: 1.4em;
+  text-transform: capitalize;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   border-radius: 3px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  img {
+    max-width: 105px;
+    margin-bottom: 10px;
+  }
   &.card-enter {
     opacity: 0;
   }
@@ -45,6 +51,7 @@ const Card = ({ id, subject, removeCard }) => {
   };
   return (
     <StyledCard>
+      <img src={require(`./images/${subject}.svg`)} />
       <div>{subject}</div>
       <RemoveButton onClick={handleClick}>&times;</RemoveButton>
     </StyledCard>

@@ -12,7 +12,7 @@ Next:
 - svg icons for buttons
 - 'now' and 'next'
 - localstorage
-- add today's date header
+- ~~add today's date header~~ formate number into ordinal
 - dark mode?
 
 ---
