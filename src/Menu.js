@@ -5,6 +5,7 @@ import BaseButton from "./BaseButton";
 
 const StyledMenuWrapper = styled.div`
   position: absolute;
+  z-index: 100;
   width: 100%;
   margin: -${(props) => props.menuHeight}px 0;
   transition: margin 0.5s;
@@ -14,7 +15,6 @@ const StyledMenuWrapper = styled.div`
 `;
 
 const StyledMenu = styled.div`
-  z-index: 100;
   list-style: none;
   margin: 0;
   padding: 10px;
@@ -57,8 +57,25 @@ const Menu = ({ addCard, clearAll }) => {
   const [menuHeight, setMenuHeight] = useState(100);
   useEffect(() => {
     // set negative margin on menu container to menu container height - button height
-    setMenuHeight(document.querySelector("#menu-container").offsetHeight - 45);
+    setMenuHeight(getMenuHeight() - 46);
+
+    // set a listener on window resizse resize
+    // use this setTimeout to debounce resize events
+    let timeoutId = null;
+    const resizeListener = () => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => setMenuHeight(getMenuHeight()), 150);
+    };
+    window.addEventListener("resize", resizeListener);
+    // clean up function
+    return () => {
+      window.removeEventListener("resize", resizeListener);
+    };
   });
+
+  const getMenuHeight = () =>
+    document.querySelector("#menu-container").offsetHeight;
+
   const subjects = [
     "art",
     "assembly",

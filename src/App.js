@@ -1,7 +1,16 @@
 import React, { useState } from "react";
-// import styled from "styled-components";
+import styled from "styled-components";
 import Menu from "./Menu";
+import DateHeading from "./DateHeading";
 import Timetable from "./Timetable";
+
+const StyledMain = styled.main`
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr;
+  min-height: 100vh;
+  margin: 0;
+`;
 
 const testCards = [
   {
@@ -79,13 +88,16 @@ const App = () => {
   return (
     <>
       <Menu addCard={addCard} clearAll={clearAll}></Menu>
-      {cards.length && (
-        <Timetable
-          cards={cards}
-          setCards={setCards}
-          removeCard={removeCard}
-        ></Timetable>
-      )}
+      <StyledMain>
+        <DateHeading></DateHeading>
+        {cards.length && (
+          <Timetable
+            cards={cards}
+            setCards={setCards}
+            removeCard={removeCard}
+          ></Timetable>
+        )}
+      </StyledMain>
     </>
   );
 };

@@ -2,16 +2,15 @@ import React from "react";
 import { ReactSortable } from "react-sortablejs";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import styled from "styled-components";
+import DateHeading from "./DateHeading";
 import Card from "./Card";
 
 const StyledTimetable = styled.ol`
   list-style: none;
-  min-height: 100vh;
-  margin: 0;
+  margin: 20px;
   padding: 0;
   display: grid;
   align-content: center;
-  justify-content: center;
   grid-gap: 20px;
   grid-template-columns: repeat(auto-fit, 175px);
 `;
