@@ -13,26 +13,26 @@ const StyledMain = styled.main`
 `;
 
 const testCards = [
-  { id: 0, subject: "art", status: null },
-  { id: 1, subject: "assembly", status: null },
-  { id: 2, subject: "DT", status: null },
-  { id: 3, subject: "English", status: null },
-  { id: 4, subject: "geography", status: null },
-  { id: 5, subject: "history", status: null },
-  { id: 6, subject: "home time", status: null },
-  { id: 7, subject: "languages", status: null },
-  { id: 8, subject: "lunch time", status: null },
-  { id: 9, subject: "maths", status: null },
-  { id: 10, subject: "music", status: null },
-  { id: 11, subject: "PE", status: null },
-  { id: 12, subject: "play time", status: null },
-  { id: 13, subject: "PSHE", status: null },
-  { id: 14, subject: "RE", status: null },
-  { id: 15, subject: "register", status: null },
-  { id: 16, subject: "reading", status: null },
-  { id: 17, subject: "science", status: null },
-  { id: 18, subject: "story time", status: null },
-  { id: 19, subject: "test", status: null },
+  // { id: 0, subject: "art", status: null },
+  // { id: 1, subject: "assembly", status: null },
+  // { id: 2, subject: "DT", status: null },
+  // { id: 3, subject: "English", status: null },
+  // { id: 4, subject: "geography", status: null },
+  // { id: 5, subject: "history", status: null },
+  // { id: 6, subject: "home time", status: null },
+  // { id: 7, subject: "languages", status: null },
+  // { id: 8, subject: "lunch time", status: null },
+  // { id: 9, subject: "maths", status: null },
+  // { id: 10, subject: "music", status: null },
+  // { id: 11, subject: "PE", status: null },
+  // { id: 12, subject: "play time", status: null },
+  // { id: 13, subject: "PSHE", status: null },
+  // { id: 14, subject: "RE", status: null },
+  // { id: 15, subject: "register", status: null },
+  // { id: 16, subject: "reading", status: null },
+  // { id: 17, subject: "science", status: null },
+  // { id: 18, subject: "story time", status: null },
+  // { id: 19, subject: "test", status: null },
 ];
 
 const App = () => {
@@ -107,7 +107,7 @@ const App = () => {
       ></Menu>
       <StyledMain>
         <DateHeading></DateHeading>
-        {cards.length && (
+        {cards.length > 0 && (
           <Timetable
             cards={cards}
             menuIsOpen={menuIsOpen}

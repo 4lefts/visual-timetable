@@ -21,7 +21,6 @@ const Timetable = ({ cards, setCards, clickCard, menuIsOpen, removeCard }) => {
       list={cards}
       setList={setCards}
       animation={200}
-      // delay={200}
       handle={".handle"}
     >
       <TransitionGroup component={null}>
