@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import BaseButton from "./BaseButton";
+import { CSSTransition } from "react-transition-group";
 import { ReactComponent as DeleteIcon } from "./icons/delete-24px.svg";
 import { ReactComponent as DragIcon } from "./icons/drag_handle-24px.svg";
 
@@ -18,6 +19,7 @@ const StyledCard = styled.li`
   flex-direction: column;
   border-radius: 3px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: box-shadow 0.3s ease;
   img {
     max-width: 105px;
     margin-bottom: 10px;
@@ -37,10 +39,35 @@ const StyledCard = styled.li`
     transition: opacity 500ms ease;
   }
   &.now {
-    background-color: red;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   }
   &.next {
-    background-color: orange;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  }
+  &.now::before {
+    content: "Now";
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    color: white;
+    background-color: dodgerblue;
+    padding: 2px;
+    font-size: 0.9em;
+    border-radius: 3px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  }
+  &.next::before {
+    content: "Next";
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    color: white;
+    background-color: dodgerblue;
+    padding: 2px;
+    font-size: 0.9em;
+    border-radius: 3px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    filter: brightness(1.2);
   }
 `;
 
@@ -57,6 +84,20 @@ const IconButton = styled(BaseButton)`
     .icon {
       transition: fill 0.3s ease;
     }
+  }
+  &.icon-button-enter {
+    opacity: 0;
+  }
+  &.icon-button-enter-active {
+    opacity: 1;
+    transition: opacity 300ms ease;
+  }
+  &.icon-button-exit {
+    opacity: 1;
+  }
+  &.icon-button-exit-active {
+    opacity: 0;
+    transition: opacity 300ms ease;
   }
 `;
 
@@ -122,17 +163,26 @@ const Card = ({
         alt={subject}
       />
       <div>{subject}</div>
-
-      {menuIsOpen && (
-        <>
-          <RemoveButton onClick={handleRemoveClick}>
-            <DeleteIcon></DeleteIcon>
-          </RemoveButton>
-          <DragHandle className="handle">
-            <DragIcon></DragIcon>
-          </DragHandle>
-        </>
-      )}
+      <CSSTransition
+        in={menuIsOpen}
+        timeout={300}
+        classNames="icon-button"
+        unmountOnExit
+      >
+        <RemoveButton onClick={handleRemoveClick}>
+          <DeleteIcon></DeleteIcon>
+        </RemoveButton>
+      </CSSTransition>
+      <CSSTransition
+        in={menuIsOpen}
+        timeout={300}
+        classNames="icon-button"
+        unmountOnExit
+      >
+        <DragHandle className="handle">
+          <DragIcon></DragIcon>
+        </DragHandle>
+      </CSSTransition>
     </StyledCard>
   );
 };

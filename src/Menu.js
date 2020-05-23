@@ -35,6 +35,7 @@ const StyledMenuButton = styled(BaseButton)`
   background-color: dodgerblue;
   color: white;
   font-size: 0.9em;
+  text-transform: capitalize;
 `;
 
 const StyledClearButton = styled(StyledMenuButton)`
@@ -137,6 +138,7 @@ const Menu = ({ addCard, clearAll, menuIsOpen, toggleMenuState }) => {
     "story time",
     "test",
   ];
+
   return (
     <StyledMenuWrapper
       id="menu-container"
