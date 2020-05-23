@@ -14,20 +14,26 @@ const StyledTimetable = styled.ol`
   grid-template-columns: repeat(auto-fit, 175px);
 `;
 
-const Timetable = ({ cards, setCards, removeCard }) => {
+const Timetable = ({ cards, setCards, clickCard, menuIsOpen, removeCard }) => {
   return (
     <ReactSortable
       tag={StyledTimetable}
       list={cards}
       setList={setCards}
       animation={200}
+      // delay={200}
+      handle={".handle"}
     >
       <TransitionGroup component={null}>
-        {cards.map((card) => (
+        {cards.map((card, index) => (
           <CSSTransition key={card.id} timeout={500} classNames="card">
             <Card
               id={card.id}
+              index={index}
               subject={card.subject}
+              status={card.status}
+              menuIsOpen={menuIsOpen}
+              clickCard={clickCard}
               removeCard={removeCard}
             ></Card>
           </CSSTransition>

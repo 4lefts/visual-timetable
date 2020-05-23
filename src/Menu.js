@@ -91,8 +91,8 @@ const StyledOpenButton = styled(BaseButton)`
   }
 `;
 
-const Menu = ({ addCard, clearAll }) => {
-  const [menuIsOpen, setMenuIsOpen] = useState(false);
+const Menu = ({ addCard, clearAll, menuIsOpen, toggleMenuState }) => {
+  // const [menuIsOpen, setMenuIsOpen] = useState(false);
   const [menuHeight, setMenuHeight] = useState(100);
   useEffect(() => {
     // set negative margin on menu container to menu container height - button height
@@ -124,7 +124,7 @@ const Menu = ({ addCard, clearAll }) => {
     "history",
     "home time",
     "languages",
-    "lunch",
+    "lunch time",
     "maths",
     "music",
     "PE",
@@ -151,7 +151,7 @@ const Menu = ({ addCard, clearAll }) => {
         ))}
         <StyledClearButton onClick={clearAll}>Clear all</StyledClearButton>
       </StyledMenu>
-      <StyledOpenButton onClick={() => setMenuIsOpen(!menuIsOpen)}>
+      <StyledOpenButton onClick={toggleMenuState}>
         <CSSTransition
           in={!menuIsOpen}
           unmountOnExit

@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import BaseButton from "./BaseButton";
-import { ReactComponent as CloseIcon } from "./icons/close-24px.svg";
+import { ReactComponent as DeleteIcon } from "./icons/delete-24px.svg";
+import { ReactComponent as DragIcon } from "./icons/drag_handle-24px.svg";
 
 const StyledCard = styled.li`
   position: relative;
@@ -35,30 +36,42 @@ const StyledCard = styled.li`
     opacity: 0;
     transition: opacity 500ms ease;
   }
+  &.now {
+    background-color: red;
+  }
+  &.next {
+    background-color: orange;
+  }
 `;
 
-const RemoveButton = styled(BaseButton)`
+const IconButton = styled(BaseButton)`
   position: absolute;
-  top: 5px;
-  right: 5px;
-  border-radius: 50%;
   padding: 0;
-  background: transparent;
+  background: white;
   display: flex;
   align-items: center;
   justify-content: center;
   svg {
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
     .icon {
-      fill: grey;
       transition: fill 0.3s ease;
     }
   }
+`;
+
+const RemoveButton = styled(IconButton)`
+  top: 0px;
+  right: 0px;
+  border-radius: 0 3px 0 3px;
+  .icon {
+    fill: tomato;
+  }
   &:hover {
+    background: tomato;
     filter: brightness(1);
     .icon {
-      fill: tomato;
+      fill: white;
     }
   }
   &:active .icon {
@@ -66,17 +79,60 @@ const RemoveButton = styled(BaseButton)`
   }
 `;
 
-const Card = ({ id, subject, removeCard }) => {
-  const handleClick = () => {
+const DragHandle = styled(IconButton)`
+  top: 0px;
+  left: 0px;
+  border-radius: 3px 0 3px 0;
+  .icon {
+    fill: dodgerblue;
+  }
+  &:hover {
+    background: dodgerblue;
+    filter: brightness(1);
+    .icon {
+      fill: white;
+    }
+  }
+  &:active .icon {
+    fill: dodgerblue;
+  }
+`;
+
+const Card = ({
+  id,
+  subject,
+  clickCard,
+  index,
+  removeCard,
+  status,
+  menuIsOpen,
+}) => {
+  const handleRemoveClick = (e) => {
+    e.stopPropagation();
     removeCard(id);
   };
+  const handleClick = () => {
+    if (!menuIsOpen) clickCard(index);
+  };
   return (
-    <StyledCard>
-      <img src={require(`./images/${subject}.svg`)} />
+    <StyledCard className={status} onClick={handleClick}>
+      <img
+        src={require(`./images/${subject}.svg`)}
+        draggable="false"
+        alt={subject}
+      />
       <div>{subject}</div>
-      <RemoveButton onClick={handleClick}>
-        <CloseIcon></CloseIcon>
-      </RemoveButton>
+
+      {menuIsOpen && (
+        <>
+          <RemoveButton onClick={handleRemoveClick}>
+            <DeleteIcon></DeleteIcon>
+          </RemoveButton>
+          <DragHandle className="handle">
+            <DragIcon></DragIcon>
+          </DragHandle>
+        </>
+      )}
     </StyledCard>
   );
 };
