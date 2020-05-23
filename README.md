@@ -11,7 +11,7 @@ Next:
 - ~~svgs for cards~~
 - ~~svg icons for buttons~~
 - ~~add today's date header and formulate number into ordinal~~
-- 'now' and 'next'
+- ~~'now' and 'next'~~
 - localstorage
 - dark mode?
 
