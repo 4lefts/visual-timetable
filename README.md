@@ -5,14 +5,15 @@ Build with [react](reactjs.org) and [react-sortablejs](https://github.com/Sortab
 
 Next:
 
-- styling - ~~do we want/need styled components?~~
+- ~~styling - do we want/need styled components?~~
 - ~~animation - slide in/out of menu, animate reorder of cards, add and remove~~
-- ~recompute menu height (and therefore margin top) on resize~~
+- ~~recompute menu height (and therefore margin top) on resize~~
 - ~~svgs for cards~~
 - ~~svg icons for buttons~~
 - ~~add today's date header and formulate number into ordinal~~
 - ~~'now' and 'next'~~
-- localstorage
+- ~~localstorage~~
+- style dragging states
 - dark mode?
 
 ---
