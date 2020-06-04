@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Menu from "./Menu";
 import DateHeading from "./DateHeading";
@@ -12,32 +12,40 @@ const StyledMain = styled.main`
   margin: 0;
 `;
 
-const testCards = [
-  // { id: 0, subject: "art", status: null },
-  // { id: 1, subject: "assembly", status: null },
-  // { id: 2, subject: "DT", status: null },
-  // { id: 3, subject: "English", status: null },
-  // { id: 4, subject: "geography", status: null },
-  // { id: 5, subject: "history", status: null },
-  // { id: 6, subject: "home time", status: null },
-  // { id: 7, subject: "languages", status: null },
-  // { id: 8, subject: "lunch time", status: null },
-  // { id: 9, subject: "maths", status: null },
-  // { id: 10, subject: "music", status: null },
-  // { id: 11, subject: "PE", status: null },
-  // { id: 12, subject: "play time", status: null },
-  // { id: 13, subject: "PSHE", status: null },
-  // { id: 14, subject: "RE", status: null },
-  // { id: 15, subject: "register", status: null },
-  // { id: 16, subject: "reading", status: null },
-  // { id: 17, subject: "science", status: null },
-  // { id: 18, subject: "story time", status: null },
-  // { id: 19, subject: "test", status: null },
-];
+// testCards, used for testing...
+// const testCards = [
+// { id: 0, subject: "art", status: null },
+// { id: 1, subject: "assembly", status: null },
+// { id: 2, subject: "DT", status: null },
+// { id: 3, subject: "English", status: null },
+// { id: 4, subject: "geography", status: null },
+// { id: 5, subject: "history", status: null },
+// { id: 6, subject: "home time", status: null },
+// { id: 7, subject: "languages", status: null },
+// { id: 8, subject: "lunch time", status: null },
+// { id: 9, subject: "maths", status: null },
+// { id: 10, subject: "music", status: null },
+// { id: 11, subject: "PE", status: null },
+// { id: 12, subject: "play time", status: null },
+// { id: 13, subject: "PSHE", status: null },
+// { id: 14, subject: "RE", status: null },
+// { id: 15, subject: "register", status: null },
+// { id: 16, subject: "reading", status: null },
+// { id: 17, subject: "science", status: null },
+// { id: 18, subject: "story time", status: null },
+// { id: 19, subject: "test", status: null },
+// ];
 
 const App = () => {
-  const [cards, setCards] = useState(testCards);
+  const getInitialCards = () =>
+    JSON.parse(window.localStorage.getItem("cards")) || [];
+  const [cards, setCards] = useState(getInitialCards); // passing a function here means we only read from local storage on initial render
   const [menuIsOpen, setMenuIsOpen] = useState(false);
+
+  // set cards in localstorage...
+  useEffect(() => {
+    window.localStorage.setItem("cards", JSON.stringify(cards));
+  }, [cards]); // ...but only when cards array changes
 
   const addCard = (newCard) => {
     // use the date in ms for card ids
