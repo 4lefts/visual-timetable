@@ -119,6 +119,7 @@ const Menu = ({ addCard, clearAll, menuIsOpen, toggleMenuState }) => {
   const subjects = [
     "art",
     "assembly",
+    "computing",
     "DT",
     "English",
     "geography",
