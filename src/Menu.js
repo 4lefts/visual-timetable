@@ -111,7 +111,7 @@ const Menu = ({ addCard, clearAll, menuIsOpen, toggleMenuState }) => {
     return () => {
       window.removeEventListener("resize", resizeListener);
     };
-  });
+  }, []);
 
   const getMenuHeight = () =>
     document.querySelector("#menu-container").offsetHeight;
