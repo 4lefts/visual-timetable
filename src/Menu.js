@@ -8,16 +8,10 @@ import { ReactComponent as UpIcon } from "./icons/arrow_upward-24px.svg";
 const StyledMenuWrapper = styled.div`
   z-index: 100;
   width: 100%;
-  /* transform: translateY(-${(props) => props.menuHeight}px); */
-  /* transition: transform 0.5s;
-  &.open {
-    transform: translateY(0);
-  } */
 `;
 
 const StyledMenu = styled.div`
   list-style: none;
-  /* margin: 0; */
   padding: 10px;
   display: grid;
   width: 100%;
@@ -91,16 +85,11 @@ const StyledOpenButton = styled(BaseButton)`
   }
 `;
 
-const Menu = ({
-  addCard,
-  clearAll,
-  menuIsOpen,
-  toggleMenuState,
-  menuHeight,
-}) => {
+const Menu = ({ addCard, clearAll, menuIsOpen, toggleMenuState }) => {
   const subjects = [
     "art",
     "assembly",
+    "computing",
     "DT",
     "English",
     "geography",

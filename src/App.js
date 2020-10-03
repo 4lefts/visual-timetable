@@ -149,7 +149,6 @@ const App = () => {
         clearAll={clearAll}
         menuIsOpen={menuIsOpen}
         toggleMenuState={toggleMenuState}
-        menuHeight={menuHeight}
       ></Menu>
       <DateHeading></DateHeading>
       {cards.length > 0 && (
