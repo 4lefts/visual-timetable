@@ -6,19 +6,18 @@ import { ReactComponent as EditIcon } from "./icons/create-24px.svg";
 import { ReactComponent as UpIcon } from "./icons/arrow_upward-24px.svg";
 
 const StyledMenuWrapper = styled.div`
-  position: absolute;
   z-index: 100;
   width: 100%;
-  margin: -${(props) => props.menuHeight}px 0;
-  transition: margin 0.5s;
+  /* transform: translateY(-${(props) => props.menuHeight}px); */
+  /* transition: transform 0.5s;
   &.open {
-    margin: 0 0;
-  }
+    transform: translateY(0);
+  } */
 `;
 
 const StyledMenu = styled.div`
   list-style: none;
-  margin: 0;
+  /* margin: 0; */
   padding: 10px;
   display: grid;
   width: 100%;
@@ -92,30 +91,13 @@ const StyledOpenButton = styled(BaseButton)`
   }
 `;
 
-const Menu = ({ addCard, clearAll, menuIsOpen, toggleMenuState }) => {
-  // const [menuIsOpen, setMenuIsOpen] = useState(false);
-  const [menuHeight, setMenuHeight] = useState(100);
-  useEffect(() => {
-    // set negative margin on menu container to menu container height - button height
-    setMenuHeight(getMenuHeight() - 46);
-
-    // set a listener on window resizse resize
-    // use this setTimeout to debounce resize events
-    let timeoutId = null;
-    const resizeListener = () => {
-      clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => setMenuHeight(getMenuHeight()), 150);
-    };
-    window.addEventListener("resize", resizeListener);
-    // clean up function
-    return () => {
-      window.removeEventListener("resize", resizeListener);
-    };
-  });
-
-  const getMenuHeight = () =>
-    document.querySelector("#menu-container").offsetHeight;
-
+const Menu = ({
+  addCard,
+  clearAll,
+  menuIsOpen,
+  toggleMenuState,
+  menuHeight,
+}) => {
   const subjects = [
     "art",
     "assembly",
@@ -129,6 +111,7 @@ const Menu = ({ addCard, clearAll, menuIsOpen, toggleMenuState }) => {
     "maths",
     "music",
     "PE",
+    "phonics",
     "play time",
     "PSHE",
     "RE",
@@ -140,11 +123,7 @@ const Menu = ({ addCard, clearAll, menuIsOpen, toggleMenuState }) => {
   ];
 
   return (
-    <StyledMenuWrapper
-      id="menu-container"
-      menuHeight={menuHeight}
-      className={menuIsOpen ? "open" : ""}
-    >
+    <StyledMenuWrapper id="menu-container">
       <StyledMenu>
         {subjects.map((subject) => (
           <StyledMenuButton key={subject} onClick={() => addCard(subject)}>
