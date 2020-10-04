@@ -24,6 +24,7 @@ const StyledMain = styled.main`
 //   { id: 3, subject: "DT", status: null },
 //   { id: 4, subject: "English", status: null },
 //   { id: 5, subject: "geography", status: null },
+//   { id: 22, subject: "handwriting", status: null },
 //   { id: 6, subject: "history", status: null },
 //   { id: 7, subject: "home time", status: null },
 //   { id: 8, subject: "languages", status: null },

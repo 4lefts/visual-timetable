@@ -13,7 +13,7 @@ Next:
 - ~~add today's date header and formulate number into ordinal~~
 - ~~'now' and 'next'~~
 - ~~localstorage~~
-- add card for handwriting and exercise
+- add card for ~~handwriting and~~ exercise
 - add menu choices for bg colors
 - possibly add option for date in roman numerals? digital date?
 - style dragging states

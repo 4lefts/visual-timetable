@@ -93,6 +93,7 @@ const Menu = ({ addCard, clearAll, menuIsOpen, toggleMenuState }) => {
     "DT",
     "English",
     "geography",
+    "handwriting",
     "history",
     "home time",
     "languages",
