@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Menu from "./Menu";
-import DateHeading from "./DateHeading";
+import DateHeading from "./Header";
 import Timetable from "./Timetable";
 
 const StyledMain = styled.main`
@@ -138,7 +138,7 @@ const App = () => {
   }, []);
 
   const getMenuHeight = () =>
-    document.querySelector("#menu-container").offsetHeight - 46; //subtract button height
+    document.querySelector("#menu-container").offsetHeight; //subtract button height
 
   return (
     <StyledMain
@@ -151,7 +151,10 @@ const App = () => {
         menuIsOpen={menuIsOpen}
         toggleMenuState={toggleMenuState}
       ></Menu>
-      <DateHeading></DateHeading>
+      <DateHeading
+        toggleMenuState={toggleMenuState}
+        menuIsOpen={menuIsOpen}
+      ></DateHeading>
       {cards.length > 0 && (
         <Timetable
           cards={cards}
