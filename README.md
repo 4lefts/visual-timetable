@@ -14,6 +14,8 @@ Next:
 - ~~'now' and 'next'~~
 - ~~localstorage~~
 - add card for ~~handwriting and~~ exercise
+- add fullscreen button
+- format header so that edit button and date are inline
 - add menu choices for bg colors
 - possibly add option for date in roman numerals? digital date?
 - style dragging states
